@@ -16,7 +16,6 @@ from auth_module.views import(
 
 app_name = 'auth_module'
 
-
 router = DefaultRouter()
 router.register('city',CityView,basename='client')
 router.register('movie',MovieView,basename='movie')
