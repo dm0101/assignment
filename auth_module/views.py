@@ -12,6 +12,7 @@ from auth_module.models import(
     Movie,
     Showtime,
     Cinema,
+    Booking,
 )
 from rest_framework.viewsets import(
                                     ViewSet,
@@ -23,6 +24,10 @@ from auth_module.serializers import(
     CinemaSerializer,
     ShowtimeSerializer,
 )
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 User = get_user_model()
 
@@ -47,6 +52,8 @@ class SignUpView(APIView):
             },status=status.HTTP_200_OK)
 
 class CityView(ViewSet):
+    permission_classes = (AllowAny,)
+
     def create(self,request):
         try:
             City.objects.create(
@@ -66,6 +73,8 @@ class CityView(ViewSet):
         return Response(serializer.data,status=status.HTTP_200_OK)
 
 class MovieView(ViewSet):
+    permission_classes = (AllowAny,)
+
     def create(self,request):
         try:
             movie = Movie.objects.create(
@@ -83,6 +92,7 @@ class MovieView(ViewSet):
                     'message':'Movie added'
                 },status=status.HTTP_200_OK)
         except IntegrityError:
+            logger.error('Something went wrong!')
             return Response({
                 'message':'City already added'
             },status=status.HTTP_200_OK)
@@ -93,6 +103,8 @@ class MovieView(ViewSet):
         return Response(serializer.data,status=status.HTTP_200_OK)
 
 class CinemaView(ViewSet):
+    permission_classes = (AllowAny,)
+
     def create(self,request):
         try:
             cinema = Cinema.objects.create(
@@ -104,6 +116,7 @@ class CinemaView(ViewSet):
                     'message':'Cinema added'
                 },status=status.HTTP_200_OK)
         except IntegrityError:
+            logger.error('Something went wrong!')
             cinema = Cinema.objects.get(
                 name = request.data.get('name'),
             )
@@ -119,6 +132,8 @@ class CinemaView(ViewSet):
         return Response(serializer.data,status=status.HTTP_200_OK)
 
 class ShowtimeView(ViewSet):
+    permission_classes = (AllowAny,)
+
     def create(self,request):
         try:
             movie = Movie.objects.get(name = request.data.get('movie'))
@@ -131,6 +146,7 @@ class ShowtimeView(ViewSet):
                 'message':'Showtime saved'
             },status=status.HTTP_200_OK)
         except Movie.DoesNotExist:
+            logger.error('Something went wrong!')
             return Response({
                 'message':'Movie does not exist.'
             },status=status.HTTP_200_OK)
@@ -140,3 +156,35 @@ class ShowtimeView(ViewSet):
         showtime = Showtime.objects.filter(movie = movie)
         serializer = ShowtimeSerializer(showtime,many=True)
         return Response(serializer.data,status=status.HTTP_200_OK)
+
+class SeatView(APIView):
+    permission_classes = (AllowAny,)
+
+    def post(self,request):
+        showtime = Showtime.objects.filter(
+            movie = request.data.get('movie'),
+            time = request.data.get('time'),
+        )
+        serializer = ShowtimeSerializer(showtime,many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+
+class BookView(ViewSet):
+    def create(self,request):
+        try:
+            showtime = Showtime.objects.get(
+                movie = request.data.get('movie'),
+                time = request.data.get('time'),
+            )
+            Booking.objects.create(
+                showtime = showtime,
+                user = request.user,
+            )
+            showtime.seats -= request.data.get('number_of_seats',0)
+            if showtime.seats >= 0:
+                showtime.save()
+                return Response({'message':'booked'},status=status.HTTP_200_OK)
+            else:
+                return Response({'message':'Tickets unavailable'},status=status.HTTP_200_OK)
+        except Showtime.DoesNotExist:
+            logger.error('Something went wrong!')
+            return Response({'message':'Showtime unavailable'},status=status.HTTP_200_OK)

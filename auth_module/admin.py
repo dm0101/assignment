@@ -5,6 +5,7 @@ from auth_module.models import(
     Movie,
     Showtime,
     Cinema,
+    Booking,
 )
 
 User = get_user_model()
@@ -28,3 +29,8 @@ class ShowtimeAdmin(admin.ModelAdmin):
     search_fields = ('movie','time','seats')
     list_display =('movie','time','seats')
 admin.site.register(Showtime, ShowtimeAdmin)
+
+class BookingAdmin(admin.ModelAdmin):
+    search_fields = ('showtime','user',)
+    list_display =('showtime','user',)
+admin.site.register(Booking, BookingAdmin)

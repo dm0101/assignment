@@ -11,7 +11,7 @@ class User(AbstractUser):
     username = models.CharField(max_length = 16,unique=True)
 
     def __str__(self):
-        return (self.first_name + self.last_name)
+        return self.username
 
 class City(models.Model):
     name = models.CharField(max_length = 16,null=True,blank=True,default=None,unique=True)
@@ -40,3 +40,7 @@ class Cinema(models.Model):
 
     def __str__(self):
         return self.name
+
+class Booking(models.Model):
+    showtime = models.ForeignKey(Showtime,on_delete = models.DO_NOTHING,null=True,blank=True,default=None)
+    user = models.ForeignKey(User,to_field= 'username',on_delete = models.DO_NOTHING,null=True,blank=True,default=None)
