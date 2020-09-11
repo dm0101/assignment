@@ -99,6 +99,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'assignment123',
         'HOST': 'assignment.chfslzirgisa.ap-south-1.rds.amazonaws.com',
+        'PORT':'5432',
     }
 }
 
