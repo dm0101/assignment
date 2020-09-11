@@ -4,6 +4,8 @@ djangorestframework==3.11.0
 djangorestframework-simplejwt==4.4.0
 pkg-resources==0.0.0
 psycopg2==2.8.5
+pycdi==0.1.2
 PyJWT==1.7.1
 pytz==2020.1
+six==1.15.0
 sqlparse==0.3.1
