@@ -82,16 +82,26 @@ WSGI_APPLICATION = 'ticketing.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'ticketing',
+#         'USER': 'testuser',
+#         'PASSWORD': 'admin123',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ticketing',
-        'USER': 'testuser',
-        'PASSWORD': 'admin123',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': 'assignment',
+        'USER': 'postgres',
+        'PASSWORD': 'assignment123',
+        'HOST': 'assignment.chfslzirgisa.ap-south-1.rds.amazonaws.com',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
