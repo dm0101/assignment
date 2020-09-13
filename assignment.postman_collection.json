@@ -1,0 +1,452 @@
+{
+	"info": {
+		"_postman_id": "8d45aa5b-0a9d-478a-a6d7-a750e9233cb0",
+		"name": "assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"test1\",\n    \"first_name\":\"test1\",\n    \"last_name\":\"test1\",\n    \"password\":\"test123\"\n}"
+				},
+				"url": {
+					"raw": "13.235.94.54:8000/auth/signup/",
+					"host": [
+						"13",
+						"235",
+						"94",
+						"54"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"test1\",\n    \"password\":\"test123\"\n}"
+				},
+				"url": {
+					"raw": "13.235.94.54:8000/auth/login/",
+					"host": [
+						"13",
+						"235",
+						"94",
+						"54"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new city",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Nagpur\"\n}"
+				},
+				"url": {
+					"raw": "{{local}}auth/city/",
+					"host": [
+						"{{local}}auth"
+					],
+					"path": [
+						"city",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get city list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Nagpur\"\n}"
+				},
+				"url": {
+					"raw": "13.235.94.54:8000/auth/city/",
+					"host": [
+						"13",
+						"235",
+						"94",
+						"54"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"city",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add movie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Movie 2\",\n    \"city\":\"Mumbai\"\n}"
+				},
+				"url": {
+					"raw": "13.235.94.54:8000/auth/movie/",
+					"host": [
+						"13",
+						"235",
+						"94",
+						"54"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"movie",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Movie from city",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Nagpur\"\n}"
+				},
+				"url": {
+					"raw": "13.235.94.54:8000/auth/movie/Mumbai",
+					"host": [
+						"13",
+						"235",
+						"94",
+						"54"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"movie",
+						"Mumbai"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cinema and showtime from movie",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Nagpur\"\n}"
+				},
+				"url": {
+					"raw": "13.235.94.54:8000/auth/cinema/Movie 1",
+					"host": [
+						"13",
+						"235",
+						"94",
+						"54"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"cinema",
+						"Movie 1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get showtime",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Nagpur\"\n}"
+				},
+				"url": {
+					"raw": "{{local}}auth/showtime/Movie 2",
+					"host": [
+						"{{local}}auth"
+					],
+					"path": [
+						"showtime",
+						"Movie 2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get seat availibility",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movie\":\"Movie 2\",\n    \"time\" :\"06:30\"\n}"
+				},
+				"url": {
+					"raw": "{{local}}auth/seat/",
+					"host": [
+						"{{local}}auth"
+					],
+					"path": [
+						"seat",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add movie to cinema or add new cinema",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Cinema 1\",\n    \"movie\": \"Movie 2\"\n\n}"
+				},
+				"url": {
+					"raw": "{{local}}auth/cinema/",
+					"host": [
+						"{{local}}auth"
+					],
+					"path": [
+						"cinema",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add showtime",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movie\":\"Movie 2\",\n    \"time\": \"06:30\",\n    \"seats\":100\n}"
+				},
+				"url": {
+					"raw": "{{local}}auth/showtime/",
+					"host": [
+						"{{local}}auth"
+					],
+					"path": [
+						"showtime",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book Ticket",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movie\":\"Movie 2\",\n    \"time\": \"06:30\",\n    \"number_of_seats\":5\n}"
+				},
+				"url": {
+					"raw": "{{local}}auth/book/",
+					"host": [
+						"{{local}}auth"
+					],
+					"path": [
+						"book",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

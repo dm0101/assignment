@@ -1,4 +1,4 @@
-from rest_framework.routers import DefaultRouter
+from rest_framework.routers import SimpleRouter
 from auth_module.views import(
 	SignUpView
 	)
@@ -18,7 +18,7 @@ from auth_module.views import(
 
 app_name = 'auth_module'
 
-router = DefaultRouter()
+router = SimpleRouter()
 router.register('city',CityView,basename='city')
 router.register('movie',MovieView,basename='movie')
 router.register('cinema',CinemaView,basename='cinema')
